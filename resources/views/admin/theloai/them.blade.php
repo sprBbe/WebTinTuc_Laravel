@@ -31,7 +31,7 @@
                         <input class="form-control" name="Ten" placeholder="Nhập tên Thể Loại" />
                     </div>
                     <button type="submit" class="btn btn-default">Thêm Thể Loại</button>
-                    <button type="reset" class="btn btn-default">Làm mới</button>
+                    <button type="reset" class="btn btn-default">Làm lại</button>
                 <form>
             </div>
         </div>
