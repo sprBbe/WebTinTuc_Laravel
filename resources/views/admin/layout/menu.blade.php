@@ -13,7 +13,7 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="#"><i class="fa fa-dashboard fa-fw"></i> Trang Chủ</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Thể Loại<span class="fa arrow"></span></a>
@@ -28,25 +28,49 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-cube fa-fw"></i> Product<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-cube fa-fw"></i> Loại Tin<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">List Product</a>
+                        <a href="admin/loaitin/danhsach">Danh Sách Loại Tin</a>
                     </li>
                     <li>
-                        <a href="#">Add Product</a>
+                        <a href="admin/loaitin/them">Thêm Loại Tin</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-newspaper-o fa-fw"></i> Tin Tức<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">List User</a>
+                        <a href="admin/tintuc/danhsach">Danh Sách Tin Tức</a>
                     </li>
                     <li>
-                        <a href="#">Add User</a>
+                        <a href="admin/tintuc/them">Thêm Tin Tức</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-desktop fa-fw"></i> Slide<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="admin/slide/danhsach">Danh Sách Slide</a>
+                    </li>
+                    <li>
+                        <a href="admin/slide/them">Thêm Slide</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-users fa-fw"></i> Người Dùng<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="admin/user/danhsach">Danh Sách Người Dùng</a>
+                    </li>
+                    <li>
+                        <a href="admin/user/them">Thêm Người Dùng</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
