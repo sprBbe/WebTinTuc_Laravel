@@ -57,4 +57,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('sua', 'SlideController@getSua');
         Route::get('them', 'SlideController@getThem');
     });
+    Route::group(['prefix' => 'ajax'], function () {
+        Route::get('loaitin/{idTheLoai}', 'AjaxController@getLoaiTin');
+    });
 });
