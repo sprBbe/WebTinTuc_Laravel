@@ -35,7 +35,7 @@
                             <td>{{$lt->Ten}}</td>
                             <td>{{$lt->TenKhongDau}}</td>
                             <td>{{$lt->theloai->Ten}}</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/loaitin/xoa/{{$lt->id}}"> Xoá</a></td>
+                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/loaitin/xoa/{{$lt->id}}"> Xoá</a></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/loaitin/sua/{{$lt->id}}">Sửa</a></td>
                         </tr>
                         @endforeach

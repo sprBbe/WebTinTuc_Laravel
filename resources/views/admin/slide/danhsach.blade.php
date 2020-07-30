@@ -38,7 +38,7 @@
                             <td>
                                 <img src="upload/slide/{{$sd->Hinh}}" width='200px'>
                             </td>
-                            <td>{{$sd->link}}</td>
+                            <td>{{$sd->Link}}</td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/slide/xoa/{{$sd->id}}">Xoá</a></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/slide/sua/{{$sd->id}}">Sửa</a></td>
                         </tr> 
