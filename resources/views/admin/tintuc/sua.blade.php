@@ -93,8 +93,48 @@
         </div>
         <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
+                    <!-- /.container-fluid -->
+        <!--Danh sách comment -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Bình luận
+                <small>Danh sách</small>
+            </h1>
+        </div>
+        <!-- /.col-lg-12 -->
+        <div class="col-lg-12">
+            @if (session('thongbaocomment'))
+                <div class="alert alert-success">
+                {{session('thongbaocomment')}} 
+                </div>
+            @endif
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                    <tr align="center">
+                        <th>ID</th>
+                        <th>Người Dùng</th>
+                        <th>Nội Dung</th>
+                        <th>Ngày Đăng</th>
+                        <th>Xoá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($tintuc->comment as $cm)
+                        <tr class="odd gradeX" align="center">
+                            <td>{{$cm->id}}</td>
+                            <td>{{$cm->user->name}}</td>
+                            <td>{{$cm->NoiDung}}</td>
+                            <td>{{$cm->created_at}}</td>
+                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/comment/xoa/{{$cm->id}}/{{$tintuc->id}}">Xoá</a></td>
+                        </tr>  
+                    @endforeach
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
     
 @endsection
 @section('script')
