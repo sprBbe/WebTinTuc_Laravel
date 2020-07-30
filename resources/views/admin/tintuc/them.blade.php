@@ -60,7 +60,7 @@
                     <div class="form-group">
                         <label>Tin Nổi Bật</label>
                         <label class="radio-inline">
-                            <input name="NoiBat" value="0" checked="" type="radio">Không
+                            <input name="NoiBat" value="0" type="radio">Không
                         </label>
                         <label class="radio-inline">
                             <input name="NoiBat" value="1" type="radio">Có

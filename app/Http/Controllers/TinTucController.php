@@ -9,7 +9,7 @@ class TinTucController extends Controller
     //
     public function getDanhSach()
     {
-        $tintuc = TinTuc::orderBy('id','DESC')->get();
+        $tintuc = TinTuc::orderBy('id','desc')->get();
         return view('admin.tintuc.danhsach', ['tintuc' => $tintuc]);
     }
     public function getThem()
@@ -61,36 +61,56 @@ class TinTucController extends Controller
             $tintuc->Hinh=""; 
         }
         $tintuc->save();
-        return redirect('admin/loaitin/them')->with('thongbao', 'Thêm thành công!');
+        return redirect('admin/tintuc/them')->with('thongbao', 'Thêm thành công!');
     }
     public function getSua($id)
     {
         $theloai = TheLoai::all();
-        $loaitin = LoaiTin::find($id);
-        return view('admin.loaitin.sua', ['loaitin' => $loaitin], ['theloai' => $theloai]);
+        $tintuc= TinTuc::find($id);
+        $loaitin = LoaiTin::where('idTheLoai',$tintuc->loaitin->idTheLoai)->get();
+        return view('admin.tintuc.sua',['tintuc'=>$tintuc,'theloai' => $theloai,'loaitin' => $loaitin]);
     }
     public function postSua(Request $request, $id)
     {
-        $loaitin = LoaiTin::find($id);
+        $tintuc = TinTuc::find($id);
         $this->validate(
             $request,
             [
-                'Ten' => 'required|unique:LoaiTin,Ten|min:2|max:100',
-                'TheLoai' => 'required',
+                'TomTat' => 'required',
+                'TieuDe' => 'required|min:2|max:100',
+                'LoaiTin' => 'required',
+                'NoiDung' => 'required',
+                'Hinh' => 'mimes:jpeg,jpg,png,raw',
             ],
             [
-                'Ten.required' => 'Bạn chưa nhập tên loại tin!',
-                'Ten.unique' => 'Tên loại tin đã tồn tại!',
-                'Ten.min' => 'Tên loại tin phải có độ dài từ 2 đến 100 ký tự!',
-                'Ten.max' => 'Tên loại tin phải có độ dài từ 2 đến 100 ký tự!',
-                'Theloai.required' => 'Bạn chưa chọn thể loại!',
+                'TomTat.required' => 'Bạn chưa nhập Tóm Tắt tin!',
+                'TieuDe.required' => 'Bạn chưa nhập Tiêu Đề tin!',
+                'TieuDe.min' => 'Tiêu Đề tin phải có độ dài từ 2 đến 100 ký tự!',
+                'TieuDe.max' => 'Tiêu Đề tin phải có độ dài từ 2 đến 100 ký tự!',
+                'LoaiTin.required' => 'Bạn chưa chọn Loại Tin!',
+                'NoiDung.required' => 'Bạn chưa nhập Nội Dung tin!',
+                'Hinh.mimes'=> 'Bạn không chọn đúng định dạng ảnh!'
             ]
         );
-        $loaitin->Ten = $request->Ten;
-        $loaitin->TenKhongDau = changeTitle($request->Ten);
-        $loaitin->idTheLoai = $request->TheLoai;
-        $loaitin->save();
-        return redirect('admin/loaitin/sua/' . $id)->with('thongbao', 'Sửa thành công!');
+        $tintuc->TieuDe = $request->TieuDe;
+        $tintuc->TieuDeKhongDau = changeTitle($request->TieuDe);
+        $tintuc->idLoaiTin = $request->LoaiTin;
+        $tintuc->TomTat = $request->TomTat;
+        $tintuc->NoiDung = $request->NoiDung;
+        $tintuc->NoiBat = $request->NoiBat;
+        if($request->hasFile('Hinh')){
+            $file = $request->file('Hinh');
+            $name = $file->getClientOriginalName();
+            $Hinh = Str::random(4)."_".$name;
+            while(file_exists("upload/tintuc/".$Hinh)){
+                $Hinh = Str::random(4)."_".$name;
+            }
+            $file->move("upload/tintuc/",$Hinh);
+            unlink("upload/tintuc/".$tintuc->Hinh);
+            $tintuc->Hinh = $Hinh; 
+        }
+        $tintuc->save();
+        return redirect('admin/tintuc/sua/'.$id)->with('thongbao', 'Sửa thành công!');
     }
     public function getXoa($id)
     {

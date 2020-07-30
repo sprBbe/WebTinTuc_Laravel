@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Thể Loại
-                    <small>Sửa {{$theloai->Ten}}</small>
+                    <small>Sửa "{{$theloai->Ten}}"</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
