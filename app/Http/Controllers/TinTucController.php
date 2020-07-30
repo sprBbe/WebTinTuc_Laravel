@@ -89,7 +89,7 @@ class TinTucController extends Controller
                 'TieuDe.max' => 'Tiêu Đề tin phải có độ dài từ 2 đến 100 ký tự!',
                 'LoaiTin.required' => 'Bạn chưa chọn Loại Tin!',
                 'NoiDung.required' => 'Bạn chưa nhập Nội Dung tin!',
-                'Hinh.mimes'=> 'Bạn không chọn đúng định dạng ảnh!'
+                'Hinh.mimes'=> 'Bạn không chọn đúng định dạng ảnh!',
             ]
         );
         $tintuc->TieuDe = $request->TieuDe;
