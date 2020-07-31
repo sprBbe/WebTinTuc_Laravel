@@ -42,7 +42,7 @@
                         <label>Link</label>
                         <input class="form-control" name="Link" placeholder="Nhập link cho Slide" />
                     </div>
-                    <button type="submit" class="btn btn-default">Thêm Tin Tức</button>
+                    <button type="submit" class="btn btn-default">Thêm Slide</button>
                     <button type="reset" class="btn btn-default">Làm lại</button>
                 <form>
             </div>
