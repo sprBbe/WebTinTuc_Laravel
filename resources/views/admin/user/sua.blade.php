@@ -32,15 +32,16 @@
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input class="form-control" type="email" name="Email" placeholder="Nhập email người dùng" value="{{$user->email}}"/>
+                        <input class="form-control" type="email" name="Email" placeholder="Nhập email người dùng" value="{{$user->email}}" readonly/>
                     </div>
                     <div class="form-group">
+                        <input type="checkbox" id ="changepassword" name="changepassword">
                         <label>Mật Khẩu</label>
-                        <input type="password" class="form-control" name="Password" placeholder="Nhập mật khẩu người dùng" />
+                        <input type="password" class="form-control password" name="Password" placeholder="Nhập mật khẩu người dùng" disabled/>
                     </div>
                     <div class="form-group">
                         <label>Nhập lại Mật Khẩu</label>
-                        <input type="password" class="form-control" name="PasswordAgain" placeholder="Nhập lại mật khẩu người dùng" />
+                        <input type="password" class="form-control password" name="PasswordAgain" placeholder="Nhập lại mật khẩu người dùng" disabled/>
                     </div>
                     <div class="form-group">
                         <label>Quyền</label>
@@ -69,4 +70,19 @@
     <!-- /.container-fluid -->
 </div>
     
+@endsection
+@section('script')
+    <script>
+       $(document).ready(function(){
+            $("#changepassword").change(function(){
+                if ($(this).is(":checked")){
+                    $(".password").removeAttr('disabled');
+                    //alert("checked");
+                }else{
+                    $(".password").attr('disabled','');
+                    //alert("notchecked"); 
+                }
+            });
+       });
+    </script>
 @endsection

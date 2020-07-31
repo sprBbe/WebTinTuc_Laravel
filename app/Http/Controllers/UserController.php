@@ -60,29 +60,34 @@ class UserController extends Controller
             $request,
             [
                 'Ten' => 'required|min:2|max:100',
-                'Email' => 'required|unique:users,email',
-                'Password'=>'required|min:6|max:30',
-                'PasswordAgain'=>'required|same:Password',
                 'Quyen'=> 'required',
             ],
             [
                 'Ten.required' => 'Bạn chưa nhập tên người dùng!',
-                'Email.required' => 'Bạn chưa nhập email người dùng!',
-                'Email.unique' => 'Email người dùng đã tồn tại!',
                 'Quyen.required' => 'Bạn chưa chọn quyền người dùng!',
                 'Ten.min' => 'Tên thể loại phải có độ dài từ 2 đến 100 ký tự!',
                 'Ten.max' => 'Tên thể loại phải có độ dài từ 2 đến 100 ký tự!',
-                'Password.required' => 'Bạn chưa nhập mật khẩu!',
-                'Password.min' => 'Mật khẩu phải có độ dài từ 6 đến 30 ký tự!',
-                'Password.max' => 'Mật khẩu phải có độ dài từ 6 đến 30 ký tự!',
-                'PasswordAgain.required' => 'Bạn chưa nhập lại mật khẩu!',
-                'PasswordAgain.same' => 'Mật khẩu nhập lại không khớp!',
             ]
         );
         $user->name = $request->Ten;
-        $user->email = $request->Email;
-        $user->password = bcrypt($request->Password);
         $user->quyen = $request->Quyen;
+        if($request->changepassword == "on"){
+            $this->validate(
+                $request,
+                [
+                    'Password'=>'required|min:6|max:30',
+                    'PasswordAgain'=>'required|same:Password',
+                ],
+                [
+                    'Password.required' => 'Bạn chưa nhập mật khẩu!',
+                    'Password.min' => 'Mật khẩu phải có độ dài từ 6 đến 30 ký tự!',
+                    'Password.max' => 'Mật khẩu phải có độ dài từ 6 đến 30 ký tự!',
+                    'PasswordAgain.required' => 'Bạn chưa nhập lại mật khẩu!',
+                    'PasswordAgain.same' => 'Mật khẩu nhập lại không khớp!',
+                ]
+            );
+            $user->password = bcrypt($request->Password);
+        }
         $user->save();
         return redirect('admin/user/sua/'.$id)->with('thongbao', 'Sửa thành công!');
     }
