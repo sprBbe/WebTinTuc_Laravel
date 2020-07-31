@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\{TheLoai, LoaiTin, Slide, Comment, User, TinTuc};
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +23,10 @@ Route::get('test', function () {
     $theloai = User::find(1);
     echo $theloai . "<br>";
 });
+
+Route::get('admin/dangnhap', 'UserController@getdangnhapAdmin');
+Route::post('admin/dangnhap', 'UserController@postdangnhapAdmin');
+Route::get('admin/dangxuat', 'UserController@getdangxuatAdmin');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'theloai'], function () {

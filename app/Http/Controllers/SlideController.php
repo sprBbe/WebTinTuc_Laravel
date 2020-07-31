@@ -36,7 +36,7 @@ class SlideController extends Controller
         );
         $slide = new Slide();
         $slide->Ten = $request->Ten;
-        $slide->Link = $request->Link;
+        $slide->link = $request->Link;
         $slide->NoiDung = $request->NoiDung;
         if($request->hasFile('Hinh')){
             $file = $request->file('Hinh');
@@ -79,7 +79,7 @@ class SlideController extends Controller
             ]
         );
         $slide->Ten = $request->Ten;
-        $slide->Link = $request->Link;
+        $slide->link = $request->Link;
         $slide->NoiDung = $request->NoiDung;
         if($request->hasFile('Hinh')){
             $file = $request->file('Hinh');

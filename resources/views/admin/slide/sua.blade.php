@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <label>Link</label>
-                        <input class="form-control" name="Link" placeholder="Nhập link cho Slide" value="{{$slide->Link}}"/>
+                        <input class="form-control" name="Link" placeholder="Nhập link cho Slide" value="{{$slide->link}}"/>
                     </div>
                     <button type="submit" class="btn btn-default">Sửa Tin Tức</button>
                     <button type="reset" class="btn btn-default">Làm lại</button>

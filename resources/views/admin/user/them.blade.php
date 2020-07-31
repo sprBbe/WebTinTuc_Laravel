@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input class="form-control" name="Email" placeholder="Nhập email người dùng" />
+                        <input class="form-control" name="Email" type="email" placeholder="Nhập email người dùng" />
                     </div>
                     <div class="form-group">
                         <label>Mật Khẩu</label>

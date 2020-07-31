@@ -18,18 +18,18 @@
                         <th>Tên</th>
                         <th>Email</th>
                         <th>Quyền</th>
-                        <th>Delete</th>
-                        <th>Edit</th>
+                        <th>Xoá</th>
+                        <th>Sửa</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($user as $u)
                         <tr class="odd gradeX" align="center">
                         <td>{{$u->id}}</td>
-                        <td>{{$u->Ten}}</td>
-                        <td>{{$u->Email}}</td>
+                        <td>{{$u->name}}</td>
+                        <td>{{$u->email}}</td>
                         <td>
-                            @if ($u->Quyen==0)
+                            @if ($u->quyen==0)
                                         {{'Thường'}}
                             @else {{'Quản trị'}}
                             @endif
