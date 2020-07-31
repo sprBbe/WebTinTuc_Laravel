@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\{TheLoai, LoaiTin, Slide, Comment, User, TinTuc};
 class PagesController extends Controller
 {
@@ -32,5 +33,80 @@ class PagesController extends Controller
         $tinlienquan = TinTuc::where('idLoaiTin',$tintuc->idLoaiTin)->take(4)->get();
         DB::table('tintuc')->where('id', $id)->update(['SoLuotXem' => $tintuc->SoLuotXem+1]);
         return view('pages.tintuc',['tintuc'=>$tintuc,'tinnoibat'=>$tinnoibat,'tinlienquan'=>$tinlienquan]); 
+    }
+    function getdangnhap(){
+        return view('pages.dangnhap');
+    }
+    function postdangnhap(Request $request){
+        $this->validate(
+            $request,
+            [
+                'Email' => 'required',
+                'Password'=>'required|min:6|max:30',
+            ],
+            [
+                'Email.required' => 'Bạn chưa nhập email người dùng!',
+                'Password.required' => 'Bạn chưa nhập mật khẩu!',
+                'Password.min' => 'Mật khẩu phải có độ dài từ 6 đến 30 ký tự!',
+                'Password.max' => 'Mật khẩu phải có độ dài từ 6 đến 30 ký tự!',
+            ]
+        );
+        
+        if(Auth::attempt(['email' => $request->Email, 'password' => $request->Password])){
+            return redirect('trangchu');
+        }
+        else{
+            return redirect('dangnhap')->with('canhbao', 'Đăng nhập không thành công!');
+        }
+    }
+    public function getdangxuat()
+    {
+        Auth::logout();
+        return redirect('trangchu');
+    }
+    function postbinhluan(Request $request, $id){
+        $comment = new Comment();
+        $comment->idTinTuc = $id;
+        $comment->idUser = Auth::user()->id;
+        $comment->NoiDung = $request->Binhluan;
+        $comment->save();
+        return redirect('tintuc/'.$id.'/'.$comment->tintuc->TieuDeKhongDau.'.html')->with('thongbao', 'Thêm bình luận thành công!');
+    }
+    function getnguoidung(){
+        return view('pages.nguoidung');
+    }
+    function postnguoidung(Request $request){
+        $user = User::find(Auth::user()->id);
+        $this->validate(
+            $request,
+            [
+                'Ten' => 'required|min:2|max:100',
+            ],
+            [
+                'Ten.required' => 'Bạn chưa nhập tên người dùng!',
+                'Ten.min' => 'Tên thể loại phải có độ dài từ 2 đến 100 ký tự!',
+                'Ten.max' => 'Tên thể loại phải có độ dài từ 2 đến 100 ký tự!',
+            ]
+        );
+        $user->name = $request->Ten;
+        if($request->changepassword == "on"){
+            $this->validate(
+                $request,
+                [
+                    'Password'=>'required|min:6|max:30',
+                    'PasswordAgain'=>'required|same:Password',
+                ],
+                [
+                    'Password.required' => 'Bạn chưa nhập mật khẩu!',
+                    'Password.min' => 'Mật khẩu phải có độ dài từ 6 đến 30 ký tự!',
+                    'Password.max' => 'Mật khẩu phải có độ dài từ 6 đến 30 ký tự!',
+                    'PasswordAgain.required' => 'Bạn chưa nhập lại mật khẩu!',
+                    'PasswordAgain.same' => 'Mật khẩu nhập lại không khớp!',
+                ]
+            );
+            $user->password = bcrypt($request->Password);
+        }
+        $user->save();
+        return redirect('nguoidung')->with('thongbao', 'Sửa thông tin thành công!');
     }
 }

@@ -35,16 +35,33 @@
             <!-- Blog Comments -->
 
             <!-- Comments Form -->
+            
             <div class="well">
                 <h4>Viết bình luận ...<span class="glyphicon glyphicon-pencil"></span></h4>
-                <form role="form">
+                @if (count($errors)>0)
+                     <div class="alert alert-danger">
+                        @foreach ($errors->all() as $err)
+                            {{$err}}<br>
+                        @endforeach       
+                     </div>
+                @endif
+                @if (session('thongbao'))
+                     <div class="alert alert-success">
+                        {{session('thongbao')}} 
+                     </div>
+                @endif
+                <form role="form" action="binhluan/{{$tintuc->id}}" method="post">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                     <div class="form-group">
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea class="form-control" rows="3" name="Binhluan"
+                            @if (!Auth::check())
+                            {{"disabled"}}
+                            @endif>@if (!Auth::check()){{"Đăng nhập để bình luận..."}}@endif</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Gửi</button>
                 </form>
             </div>
-
+        
             <hr>
 
             <!-- Posted Comments -->
@@ -52,7 +69,7 @@
                 <!-- Comment -->
             <div class="media">
                 <a class="pull-left" href="#">
-                    <img class="media-object" src="http://placehold.it/64x64" alt="">
+                    <img class="media-object" src="https://cdn.pixabay.com/photo/2018/11/13/21/43/instagram-3814049_960_720.png" alt="" width="64px" height="64px">
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">{{$cm->user->name}}
