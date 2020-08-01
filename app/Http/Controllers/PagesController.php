@@ -21,6 +21,9 @@ class PagesController extends Controller
     function lienhe(){
         return view('pages.lienhe');
     }
+    function gioithieu(){
+        return view('pages.gioithieu');
+    }
     function loaitin($id){
         $loaitin = LoaiTin::find($id);
         $tintuc = TinTuc::where('idLoaiTin',$id)->paginate(5);
@@ -36,6 +39,9 @@ class PagesController extends Controller
     }
     function getdangnhap(){
         return view('pages.dangnhap');
+    }
+    function getdangky(){
+        return view('pages.dangky');
     }
     function postdangnhap(Request $request){
         $this->validate(
@@ -58,6 +64,32 @@ class PagesController extends Controller
         else{
             return redirect('dangnhap')->with('canhbao', 'Đăng nhập không thành công!');
         }
+    }
+    function postdangky(Request $request){
+        $this->validate(
+            $request,
+            [
+                'Ten' => 'required|min:2|max:100',
+                'Password'=>'required|min:6|max:30',
+                'PasswordAgain'=>'required|same:Password',
+            ],
+            [
+                'Ten.required' => 'Bạn chưa nhập tên người dùng!',
+                'Ten.min' => 'Tên thể loại phải có độ dài từ 2 đến 100 ký tự!',
+                'Ten.max' => 'Tên thể loại phải có độ dài từ 2 đến 100 ký tự!',
+                'Password.required' => 'Bạn chưa nhập mật khẩu!',
+                'Password.min' => 'Mật khẩu phải có độ dài từ 6 đến 30 ký tự!',
+                'Password.max' => 'Mật khẩu phải có độ dài từ 6 đến 30 ký tự!',
+                'PasswordAgain.required' => 'Bạn chưa nhập lại mật khẩu!',
+                'PasswordAgain.same' => 'Mật khẩu nhập lại không khớp!',
+            ]
+        );
+        $user = new User();
+        $user->name = $request->Ten;
+        $user->email = $request->Email;
+        $user->password = bcrypt($request->Password);
+        $user->save();
+        return redirect('dangky')->with('thongbao', 'Đăng ký thành công!');
     }
     public function getdangxuat()
     {
@@ -108,5 +140,11 @@ class PagesController extends Controller
         }
         $user->save();
         return redirect('nguoidung')->with('thongbao', 'Sửa thông tin thành công!');
+    }
+    function posttimkiem(Request $request){
+        $tukhoa = $request->Timkiem;
+        $tintuc = TinTuc::where('TieuDe','like',"%$tukhoa%")->orwhere('TomTat','like',"%$tukhoa%")->
+        orwhere('NoiDung','like',"%$tukhoa%")->take(30)->paginate(5);
+        return view('pages.timkiem',['tintuc'=>$tintuc,'tukhoa'=>$tukhoa]);
     }
 }

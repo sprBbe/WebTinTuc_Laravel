@@ -19,9 +19,9 @@
                         </div>
                         @endif
                         @if (session('thongbao'))
-                                <div class="alert alert-success">
-                                {{session('thongbao')}} 
-                                </div>
+                            <div class="alert alert-success">
+                            {{session('thongbao')}} 
+                            </div>
                         @endif
 				    	<form action="nguoidung" method="POST">
                             <input type="hidden" name="_token" value="{{csrf_token()}}"/>

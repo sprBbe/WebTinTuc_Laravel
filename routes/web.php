@@ -79,11 +79,15 @@ Route::group(['prefix' => 'admin', 'middleware'=>'adminLogin'], function () {
 
 Route::get('trangchu', 'PagesController@trangchu');
 Route::get('lienhe', 'PagesController@lienhe');
+Route::get('gioithieu', 'PagesController@gioithieu');
 Route::get('loaitin/{id}/{TenKhongDau}.html', 'PagesController@loaitin');
 Route::get('tintuc/{id}/{TieuDeKhongDau}.html', 'PagesController@tintuc');
 Route::get('dangnhap', 'PagesController@getdangnhap');
 Route::post('dangnhap', 'PagesController@postdangnhap');
+Route::get('dangky', 'PagesController@getdangky');
+Route::post('dangky', 'PagesController@postdangky');
 Route::get('dangxuat', 'PagesController@getdangxuat');
 Route::post('binhluan/{id}', 'PagesController@postbinhluan');
 Route::get('nguoidung', 'PagesController@getnguoidung');
 Route::post('nguoidung', 'PagesController@postnguoidung');
+Route::post('timkiem', 'PagesController@posttimkiem');
