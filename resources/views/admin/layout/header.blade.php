@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">Bbe's First Laravel Project!</a>
+        <a class="navbar-brand" href="admin/theloai/danhsach">Bbe's First Laravel Project!</a>
     </div>
     <!-- /.navbar-header -->
 

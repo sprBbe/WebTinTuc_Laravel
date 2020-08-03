@@ -21,11 +21,11 @@ class AdminLoginMiddleware
                 return $next($request);
             }
             else{
-                return redirect('admin/dangnhap');
+                return redirect('admin/dangnhap')->with('canhbao', 'Bạn phải có quyền quản trị mới được truy cập!');;
             }
         }
         else{
-            return redirect('admin/dangnhap');
+            return redirect('admin/dangnhap')->with('canhbao', 'Bạn phải đăng nhập trước khi truy cập phần này!');
         }
         
     }
