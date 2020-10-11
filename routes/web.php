@@ -88,4 +88,4 @@ Route::get('dangxuat', 'PagesController@getdangxuat');
 Route::post('binhluan/{id}', 'PagesController@postbinhluan');
 Route::get('nguoidung', 'PagesController@getnguoidung');
 Route::post('nguoidung', 'PagesController@postnguoidung');
-Route::post('timkiem', 'PagesController@posttimkiem');
+Route::get('timkiem', 'PagesController@getTimKiem');

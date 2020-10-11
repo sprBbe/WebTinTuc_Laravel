@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class LoaiTin extends Model
 {
     //
-    protected $table = "LoaiTin";
+    protected $table = "loaitin";
     public function theloai(){
         return $this->belongsTo('App\TheLoai','idTheLoai','id');
     }

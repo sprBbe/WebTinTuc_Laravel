@@ -21,8 +21,7 @@
                         <a href="lienhe">Liên hệ</a>
                     </li>
                 </ul>
-                <form action="timkiem" method="post" class="navbar-form navbar-left" role="search">
-                    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                <form action="timkiem" method="GET" class="navbar-form navbar-left" role="search">
 			        <div class="form-group">
 			          <input type="text" class="form-control" name= "Timkiem" placeholder="Tìm kiếm tin tức...">
 			        </div>
@@ -52,7 +51,7 @@
             </div>
 
 
-            
+
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->

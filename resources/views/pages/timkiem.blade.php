@@ -15,7 +15,7 @@
                     <div class="panel-heading" style="background-color:#337AB7; color:white;">
                         <h4><b>Tìm kiếm Từ khoá: {{$tukhoa}}</b></h4>
                     </div>
-                    
+
                     @foreach ($tintuc as $tt)
                         <div class="row-item row">
                             <div class="col-md-3">
@@ -33,18 +33,19 @@
                             <div class="break"></div>
                         </div>
                     @endforeach
-                        
+
                     <!-- Pagination -->
                     <div class="row text-center">
-                        {{$tintuc->links()}}
+                        {{--{{$tintuc->links()}}--}}
+                        {{ $tintuc->appends(Request::all())->links() }}
                     </div>
                     <!-- /.row -->
 
                 </div>
-            </div> 
+            </div>
 
         </div>
 
     </div>
-    <!-- end Page Content -->     
+    <!-- end Page Content -->
 @endsection

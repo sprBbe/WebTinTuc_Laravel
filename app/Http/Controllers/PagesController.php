@@ -31,11 +31,11 @@ class PagesController extends Controller
     }
     function tintuc($id){
         $tintuc = TinTuc::find($id);
-        //$tintuc->SoLuotXem=$tintuc->SoLuotXem+1; 
+        //$tintuc->SoLuotXem=$tintuc->SoLuotXem+1;
         $tinnoibat = TinTuc::where('NoiBat',1)->take(4)->get();
         $tinlienquan = TinTuc::where('idLoaiTin',$tintuc->idLoaiTin)->take(4)->get();
         DB::table('tintuc')->where('id', $id)->update(['SoLuotXem' => $tintuc->SoLuotXem+1]);
-        return view('pages.tintuc',['tintuc'=>$tintuc,'tinnoibat'=>$tinnoibat,'tinlienquan'=>$tinlienquan]); 
+        return view('pages.tintuc',['tintuc'=>$tintuc,'tinnoibat'=>$tinnoibat,'tinlienquan'=>$tinlienquan]);
     }
     function getdangnhap(){
         return view('pages.dangnhap');
@@ -57,7 +57,7 @@ class PagesController extends Controller
                 'Password.max' => 'Mật khẩu phải có độ dài từ 6 đến 30 ký tự!',
             ]
         );
-        
+
         if(Auth::attempt(['email' => $request->Email, 'password' => $request->Password])){
             return redirect('trangchu');
         }
@@ -141,8 +141,9 @@ class PagesController extends Controller
         $user->save();
         return redirect('nguoidung')->with('thongbao', 'Sửa thông tin thành công!');
     }
-    function posttimkiem(Request $request){
-        $tukhoa = $request->Timkiem;
+    function getTimKiem(Request $request){
+        //$tukhoa = $request->Timkiem;
+        $tukhoa=$request->get('Timkiem');
         $tintuc = TinTuc::where('TieuDe','like',"%$tukhoa%")->orwhere('TomTat','like',"%$tukhoa%")->
         orwhere('NoiDung','like',"%$tukhoa%")->take(30)->paginate(5);
         return view('pages.timkiem',['tintuc'=>$tintuc,'tukhoa'=>$tukhoa]);
